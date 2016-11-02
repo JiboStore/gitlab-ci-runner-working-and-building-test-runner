@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project testrunner/testrunner.xcodeproj -scheme testrunner | xcpretty
+    - xcodebuild test -project testrunner/testrunner.xcodeproj -scheme testrunner -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.2' | xcpretty -s
+  tags:
+    - ios-builder
